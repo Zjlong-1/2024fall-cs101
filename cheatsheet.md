@@ -114,10 +114,10 @@ la=[[-1]*(m+1) for _ in range(k+1)]
 la[0][m]=n
 for q in range(1,k+1):
     a,b=map(int,input().split())
-关键    for j in range(m+1):
-1        for i in range(q,0,-1):
-2            if j+b<=m and la[i-1][j+b]!=-1:
-3               la[i][j]=max(la[i-1][j+b]-a,la[i][j])
+    for j in range(m+1):
+        for i in range(q,0,-1):
+            if j+b<=m and la[i-1][j+b]!=-1:
+               la[i][j]=max(la[i-1][j+b]-a,la[i][j])
 def solve():
     for i in range(k, -1, -1):
         for j in range(m, -1, -1):
@@ -127,36 +127,36 @@ def solve():
 solve()
 14.差分化：区间都减去相同的数，差分是首选，不要忘记了这个强大的工具。例子：判断操作后是否可以变成0数组：
 n=len(nums)
-        l=[0]*(n+1)
-        sum=0
-        for [i,j] in queries:#事实上i，j 就可以了。
-            l[i]+=1
-            l[j+1]-=1
-        for i in range(n):
-            sum+=l[i]
-            if sum<nums[i]:
-                return False
-        return True
+l=[0]*(n+1)
+sum=0
+for [i,j] in queries:#事实上i，j 就可以了。
+    l[i]+=1
+    l[j+1]-=1
+    for i in range(n):
+        sum+=l[i]
+        if sum<nums[i]:
+            return False
+    return True
 15.三数之和：一个for循环，其余两个双指针（还要去重，同理放在循环的开始）
-nums.sort()
-        for i in range(n-2):
-            if i>0 and nums[i]==nums[i-1]:
-                continue
-            left=i+1
-            right=n-1
-            k=-nums[i]
-            while left<right:
-                if nums[left]+nums[right]==k:
-                    ans.append([nums[i],nums[left],nums[right]])
+    nums.sort()
+    for i in range(n-2):
+        if i>0 and nums[i]==nums[i-1]:
+            continue
+        left=i+1
+        right=n-1
+        k=-nums[i]
+        while left<right:
+            if nums[left]+nums[right]==k:
+                ans.append([nums[i],nums[left],nums[right]])
+                left+=1
+                while nums[left]==nums[left-1] and left<right:
                     left+=1
-                    while nums[left]==nums[left-1] and left<right:
-                        left+=1
-                elif nums[left]+nums[right]>k:
-                    right-=1
-                else:
-                    left+=1
+            elif nums[left]+nums[right]>k:
+                right-=1
+            else:
+                left+=1
 16.用栈实现字符串的解码：
- stack=[]
+        stack=[]
         res,multi='',0
         for i in s:
             if i=='[':
@@ -261,8 +261,8 @@ ans = s = 0
             ans += cnt[s - k]
             cnt[s] += 1
         return ans
-27.旋转矩阵，一步一步走，用四个数字来表示走的方向，判断是否改方向。同时弄一个visit数组。
-或者：        if not matrix or not matrix[0]:
+27.旋转矩阵，一步一步走，用四个数字来表示走的方向，判断是否改方向。同时弄一个visit数组。or:
+       if not matrix or not matrix[0]:
             return list()
         rows, columns = len(matrix), len(matrix[0])
         visited = [[False] * columns for _ in range(rows)] ，total = rows * columns ，order = [0] * total
@@ -286,4 +286,4 @@ n = int(input())
         print(l[n])
 29.以一点为单位的DP一般用前i个来弄比较好，但是如果是多维的，只能用第i个，因为要考虑尾部是否可以合并。
 30.改递归深度：import sys  sys.setrecursionlimit(20000)
-31.
+
